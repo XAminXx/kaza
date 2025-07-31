@@ -14,8 +14,12 @@ logging.basicConfig(
 app = Flask(__name__)
 
 # Bot configuration
-BOT_TOKEN = os.environ.get('BOT_TOKEN', "8406877843:AAHJulHDja0F0ERtCIwuY8AN3BdEH9hqtxo")
+BOT_TOKEN = os.environ.get('BOT_TOKEN')
 ADMIN_CHAT_ID = int(os.environ.get('ADMIN_CHAT_ID', 764067662))
+
+# Check if required environment variables are set
+if not BOT_TOKEN:
+    raise ValueError("BOT_TOKEN environment variable is required!")
 user_reports = {}
 
 # Initialize bot application
